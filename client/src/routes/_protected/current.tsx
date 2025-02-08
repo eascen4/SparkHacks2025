@@ -23,6 +23,21 @@ function RouteComponent() {
       offeredCourse: "CS 480",
       requiredCourse: "CS 426",
     },
+    {
+      id: 4,
+      offeredCourse: "IE 342",
+      requiredCourse: "STAT 381",
+    },
+    {
+      id: 5,
+      offeredCourse: "CS 477",
+      requiredCourse: "CS 487",
+    },
+    {
+      id: 6,
+      offeredCourse: "CS 480",
+      requiredCourse: "CS 440",
+    },
   ];
 
   const handleEmail = (id: number) => {

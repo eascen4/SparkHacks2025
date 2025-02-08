@@ -16,7 +16,7 @@ const AppSidebar = () => {
     <Sidebar className="flex flex-col h-full">
       <SidebarContent className="flex-1">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-2xl font-bold">Class Trades</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-2xl font-bold">TradeSpark</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
