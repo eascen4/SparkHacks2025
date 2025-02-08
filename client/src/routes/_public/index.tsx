@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-function accord() {
+function questions() {
   return (
     <div>
       <Accordion type="single" collapsible>
@@ -67,9 +67,8 @@ export const Route = createFileRoute('/_public/')({
 function Index() {
   return (
     <div className="p-2">
-      <img src="./images/compass-rose.png"></img>
       <h1>Welcome to TradeSpark!</h1>
-      {accord()}
+      {questions()}
     </div>
   )
 }
