@@ -19,12 +19,14 @@ export const Route = createFileRoute("/_protected")({
 
 function RouteComponent() {
   return (
-    <>
+    <div className="flex min-h-screen">
       <SidebarProvider>
         <AppSidebar />
         <SidebarTrigger />
-        <Outlet />
+        <div className="flex-grow p-6 ml-4 flex justify-center items-center">
+          <Outlet />
+        </div>
       </SidebarProvider>
-    </>
+    </div>
   );
 }
