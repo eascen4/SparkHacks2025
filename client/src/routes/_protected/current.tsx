@@ -1,10 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast"
 
 export const Route = createFileRoute("/_protected/current")({
   component: RouteComponent,
 });
+
+
+
+export const ToastDemo = () => {
+  const { toast } = useToast()
+ 
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          title: "Email sent!",
+          //description: "Friday, February 10, 2023 at 5:57 PM",
+        })
+      }}
+    >
+      Email
+    </Button>
+  )
+}
 
 function RouteComponent() {
   const notifications = [
@@ -77,7 +97,7 @@ function RouteComponent() {
   ];
 
   const handleEmail = (id: number) => {
-    console.log(`Email sent for trade: ${id}`);
+    console.log("Email sent!");
   };
 
   return (
@@ -90,7 +110,7 @@ function RouteComponent() {
               <TableRow>
                 <TableHead className="w-1/4">Offered Course</TableHead>
                 <TableHead className="w-1/4">Offered Section & Time</TableHead>
-                <TableHead className="w-1/4">Required Course</TableHead>
+                <TableHead className="w-1/4">Requested Course</TableHead>
                 <TableHead className="w-1/4">Required Section & Time</TableHead>
                 <TableHead className="w-1/4">Send Email</TableHead>
               </TableRow>
@@ -112,13 +132,7 @@ function RouteComponent() {
                       {notification.requiredTime}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="default"
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 text-lg"
-                        onClick={() => handleEmail(notification.id)}
-                      >
-                        Email
-                      </Button>
+                      <ToastDemo />
                     </TableCell>
                   </TableRow>
                 ))
