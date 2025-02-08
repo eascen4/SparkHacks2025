@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import { GearIcon } from "@radix-ui/react-icons"; 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import compassRose from '../assets/compass-rose.png';
 
 const AppSidebar = () => {
@@ -22,17 +22,17 @@ const AppSidebar = () => {
             <motion.img
               src={compassRose}
               alt="Logo"
-              style={{ width: '50px', height: '50px', padding: '4px'}}
+              style={{ width: '50px', height: '50px', padding: '4px' }}
             /> TradeSpark
-            </SidebarGroupLabel>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
+              <SidebarMenuItem className="list-none">
                 <SidebarMenuButton asChild>
-                  <Link to="/create" className="text-xl">Create Trade</Link>
+                  <Link to="/create" className="text-xl mt-3">Create Trade</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              <SidebarMenuItem>
+              <SidebarMenuItem className="list-none">
                 <SidebarMenuButton asChild>
                   <Link to="/current" className="text-xl">Current Trades</Link>
                 </SidebarMenuButton>
@@ -43,7 +43,7 @@ const AppSidebar = () => {
       </SidebarContent>
 
       <div className="p-4 border-t">
-        <SidebarMenuItem>
+        <SidebarMenuItem className="list-none">
           <SidebarMenuButton asChild>
             <Link to="/settings" className="flex items-center gap-2 text-xl">
               <GearIcon className="w-5 h-5" />
@@ -57,6 +57,5 @@ const AppSidebar = () => {
 };
 
 export default AppSidebar;
-
 
 
