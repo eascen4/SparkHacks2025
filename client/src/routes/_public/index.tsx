@@ -14,7 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-
+import { motion } from "framer-motion";
 
 function questions() {
   return (
@@ -80,7 +80,7 @@ function Index() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbPage>Home</BreadcrumbPage>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -92,12 +92,28 @@ function Index() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <img 
+      {/* <motion.img 
         src={compassRose} 
-        style={{ width: '80px', height: '80px' }} 
-      />
-      <h1>Welcome to TradeSpark!</h1>
+        style={{ width: '80px', height: '80px' }}
+      /> */}
+
+      <div className="flex flex-row">
+        <motion.img 
+          src={compassRose}
+          alt="animated image"
+          style={{ width: '80px', height: '80px' }}
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 3 }}
+        />
+        <h1 className="font-mono font-bold text-2xl position: 'absolute' ">Welcome to TradeSpark!</h1>
+      </div>
       {questions()}
+      <img className="flex justify-center"
+          src={compassRose}
+          alt="animated image"
+          style={{ width: '2000px', height: '500px' }}
+      />
+
     </div>
   );
 }
