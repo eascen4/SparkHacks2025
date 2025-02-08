@@ -138,7 +138,7 @@ You will need to install Node.js (20.18.2 LTS).
    cd ../server
    npm i
    ```
-5. Run the file in client
+5. Run the file in `client`
    ```sh
    cd ../client
    npm run dev
