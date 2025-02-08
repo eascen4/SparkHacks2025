@@ -11,9 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PublicImport } from './routes/_public'
 import { Route as ProtectedImport } from './routes/_protected'
 import { Route as AuthImport } from './routes/_auth'
-import { Route as ProtectedIndexImport } from './routes/_protected/index'
+import { Route as PublicIndexImport } from './routes/_public/index'
 import { Route as ProtectedSettingsImport } from './routes/_protected/settings'
 import { Route as ProtectedCurrentImport } from './routes/_protected/current'
 import { Route as ProtectedCreateImport } from './routes/_protected/create'
@@ -22,6 +23,11 @@ import { Route as AuthSignupImport } from './routes/_auth/signup'
 import { Route as AuthLoginImport } from './routes/_auth/login'
 
 // Create/Update Routes
+
+const PublicRoute = PublicImport.update({
+  id: '/_public',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ProtectedRoute = ProtectedImport.update({
   id: '/_protected',
@@ -33,10 +39,10 @@ const AuthRoute = AuthImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ProtectedIndexRoute = ProtectedIndexImport.update({
+const PublicIndexRoute = PublicIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => ProtectedRoute,
+  getParentRoute: () => PublicRoute,
 } as any)
 
 const ProtectedSettingsRoute = ProtectedSettingsImport.update({
@@ -93,6 +99,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedImport
       parentRoute: typeof rootRoute
     }
+    '/_public': {
+      id: '/_public'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof PublicImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/login': {
       id: '/_auth/login'
       path: '/login'
@@ -135,12 +148,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedSettingsImport
       parentRoute: typeof ProtectedImport
     }
-    '/_protected/': {
-      id: '/_protected/'
+    '/_public/': {
+      id: '/_public/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof ProtectedIndexImport
-      parentRoute: typeof ProtectedImport
+      preLoaderRoute: typeof PublicIndexImport
+      parentRoute: typeof PublicImport
     }
   }
 }
@@ -164,7 +177,6 @@ interface ProtectedRouteChildren {
   ProtectedCreateRoute: typeof ProtectedCreateRoute
   ProtectedCurrentRoute: typeof ProtectedCurrentRoute
   ProtectedSettingsRoute: typeof ProtectedSettingsRoute
-  ProtectedIndexRoute: typeof ProtectedIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
@@ -172,14 +184,35 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedCreateRoute: ProtectedCreateRoute,
   ProtectedCurrentRoute: ProtectedCurrentRoute,
   ProtectedSettingsRoute: ProtectedSettingsRoute,
-  ProtectedIndexRoute: ProtectedIndexRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
   ProtectedRouteChildren,
 )
 
+interface PublicRouteChildren {
+  PublicIndexRoute: typeof PublicIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicIndexRoute: PublicIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
+
 export interface FileRoutesByFullPath {
+  '': typeof PublicRouteWithChildren
+  '/login': typeof AuthLoginRoute
+  '/signup': typeof AuthSignupRoute
+  '/about': typeof ProtectedAboutRoute
+  '/create': typeof ProtectedCreateRoute
+  '/current': typeof ProtectedCurrentRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/': typeof PublicIndexRoute
+}
+
+export interface FileRoutesByTo {
   '': typeof ProtectedRouteWithChildren
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
@@ -187,31 +220,21 @@ export interface FileRoutesByFullPath {
   '/create': typeof ProtectedCreateRoute
   '/current': typeof ProtectedCurrentRoute
   '/settings': typeof ProtectedSettingsRoute
-  '/': typeof ProtectedIndexRoute
-}
-
-export interface FileRoutesByTo {
-  '': typeof AuthRouteWithChildren
-  '/login': typeof AuthLoginRoute
-  '/signup': typeof AuthSignupRoute
-  '/about': typeof ProtectedAboutRoute
-  '/create': typeof ProtectedCreateRoute
-  '/current': typeof ProtectedCurrentRoute
-  '/settings': typeof ProtectedSettingsRoute
-  '/': typeof ProtectedIndexRoute
+  '/': typeof PublicIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_auth': typeof AuthRouteWithChildren
   '/_protected': typeof ProtectedRouteWithChildren
+  '/_public': typeof PublicRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/signup': typeof AuthSignupRoute
   '/_protected/about': typeof ProtectedAboutRoute
   '/_protected/create': typeof ProtectedCreateRoute
   '/_protected/current': typeof ProtectedCurrentRoute
   '/_protected/settings': typeof ProtectedSettingsRoute
-  '/_protected/': typeof ProtectedIndexRoute
+  '/_public/': typeof PublicIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -239,24 +262,27 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_auth'
     | '/_protected'
+    | '/_public'
     | '/_auth/login'
     | '/_auth/signup'
     | '/_protected/about'
     | '/_protected/create'
     | '/_protected/current'
     | '/_protected/settings'
-    | '/_protected/'
+    | '/_public/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   ProtectedRoute: typeof ProtectedRouteWithChildren
+  PublicRoute: typeof PublicRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   ProtectedRoute: ProtectedRouteWithChildren,
+  PublicRoute: PublicRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -270,7 +296,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_auth",
-        "/_protected"
+        "/_protected",
+        "/_public"
       ]
     },
     "/_auth": {
@@ -286,8 +313,13 @@ export const routeTree = rootRoute
         "/_protected/about",
         "/_protected/create",
         "/_protected/current",
-        "/_protected/settings",
-        "/_protected/"
+        "/_protected/settings"
+      ]
+    },
+    "/_public": {
+      "filePath": "_public.tsx",
+      "children": [
+        "/_public/"
       ]
     },
     "/_auth/login": {
@@ -314,9 +346,9 @@ export const routeTree = rootRoute
       "filePath": "_protected/settings.tsx",
       "parent": "/_protected"
     },
-    "/_protected/": {
-      "filePath": "_protected/index.tsx",
-      "parent": "/_protected"
+    "/_public/": {
+      "filePath": "_public/index.tsx",
+      "parent": "/_public"
     }
   }
 }
