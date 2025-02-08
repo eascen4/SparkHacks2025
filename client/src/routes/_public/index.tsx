@@ -6,6 +6,15 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import compassRose from './../../assets/compass-rose.png';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
 
 function questions() {
   return (
@@ -68,6 +77,21 @@ export const Route = createFileRoute('/_public/')({
 function Index() {
   return (
     <div className="p-2">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/login">Login</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/signup">Sign Up</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <img 
         src={compassRose} 
         style={{ width: '80px', height: '80px' }} 
