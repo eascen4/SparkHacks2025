@@ -26,6 +26,7 @@
     "@tanstack/react-router": "^1.99.13",
     "@tanstack/react-table": "^8.20.6",
     "@vitejs/plugin-react-swc": "^3.7.2",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
