@@ -13,9 +13,12 @@ function RouteComponent() {
 
   const [wantedSubject, setWantedSubject] = useState("");
   const [wantedCourseNumber, setWantedCourseNumber] = useState("");
+  const [wantedSection, setWantedSection] = useState("");
 
   const [giveUpSubject, setGiveUpSubject] = useState("");
   const [giveUpCourseNumber, setGiveUpCourseNumber] = useState("");
+  const [giveUpSection, setGiveUpSection] = useState("");
+
   const mutation = useMutation({
     mutationFn: async (data: {
       courseId: number;
@@ -62,7 +65,7 @@ function RouteComponent() {
         <h2 className="text-2xl font-bold mb-4">Create a Trade</h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div>
-            <h3 className="text-lg font-semibold">Desired class</h3>
+            <h2 className="text-lg font-semibold">Desired class</h2>
             <label className="block text-gray-700">Subject</label>
             <input
               type="text"
@@ -79,10 +82,18 @@ function RouteComponent() {
               className="w-full p-2 border rounded"
               required
             />
+            <label className="block text-gray-700 mt-2">Course Section</label>
+            <input
+              type="text"
+              value={wantedSection}
+              onChange={(e) => setWantedSection(e.target.value)}
+              className="w-full p-2 border rounded"
+              required
+            />
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold">Offering Class</h3>
+            <h2 className="text-lg font-semibold">Offering Class</h2>
             <label className="block text-gray-700">Subject</label>
             <input
               type="text"
@@ -96,6 +107,14 @@ function RouteComponent() {
               type="text"
               value={giveUpCourseNumber}
               onChange={(e) => setGiveUpCourseNumber(e.target.value)}
+              className="w-full p-2 border rounded"
+              required
+            />
+            <label className="block text-gray-700 mt-2">Course Section</label>
+            <input
+              type="text"
+              value={giveUpSection}
+              onChange={(e) => setGiveUpSection(e.target.value)}
               className="w-full p-2 border rounded"
               required
             />
