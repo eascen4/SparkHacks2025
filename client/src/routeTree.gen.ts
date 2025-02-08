@@ -15,7 +15,6 @@ import { Route as ProtectedImport } from './routes/_protected'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as ProtectedIndexImport } from './routes/_protected/index'
 import { Route as ProtectedSettingsImport } from './routes/_protected/settings'
-import { Route as ProtectedNotificationImport } from './routes/_protected/notification'
 import { Route as ProtectedCurrentImport } from './routes/_protected/current'
 import { Route as ProtectedCreateImport } from './routes/_protected/create'
 import { Route as ProtectedAboutImport } from './routes/_protected/about'
@@ -43,12 +42,6 @@ const ProtectedIndexRoute = ProtectedIndexImport.update({
 const ProtectedSettingsRoute = ProtectedSettingsImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-
-const ProtectedNotificationRoute = ProtectedNotificationImport.update({
-  id: '/notification',
-  path: '/notification',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -135,13 +128,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedCurrentImport
       parentRoute: typeof ProtectedImport
     }
-    '/_protected/notification': {
-      id: '/_protected/notification'
-      path: '/notification'
-      fullPath: '/notification'
-      preLoaderRoute: typeof ProtectedNotificationImport
-      parentRoute: typeof ProtectedImport
-    }
     '/_protected/settings': {
       id: '/_protected/settings'
       path: '/settings'
@@ -177,7 +163,6 @@ interface ProtectedRouteChildren {
   ProtectedAboutRoute: typeof ProtectedAboutRoute
   ProtectedCreateRoute: typeof ProtectedCreateRoute
   ProtectedCurrentRoute: typeof ProtectedCurrentRoute
-  ProtectedNotificationRoute: typeof ProtectedNotificationRoute
   ProtectedSettingsRoute: typeof ProtectedSettingsRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
 }
@@ -186,7 +171,6 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedAboutRoute: ProtectedAboutRoute,
   ProtectedCreateRoute: ProtectedCreateRoute,
   ProtectedCurrentRoute: ProtectedCurrentRoute,
-  ProtectedNotificationRoute: ProtectedNotificationRoute,
   ProtectedSettingsRoute: ProtectedSettingsRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
 }
@@ -202,7 +186,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof ProtectedAboutRoute
   '/create': typeof ProtectedCreateRoute
   '/current': typeof ProtectedCurrentRoute
-  '/notification': typeof ProtectedNotificationRoute
   '/settings': typeof ProtectedSettingsRoute
   '/': typeof ProtectedIndexRoute
 }
@@ -214,7 +197,6 @@ export interface FileRoutesByTo {
   '/about': typeof ProtectedAboutRoute
   '/create': typeof ProtectedCreateRoute
   '/current': typeof ProtectedCurrentRoute
-  '/notification': typeof ProtectedNotificationRoute
   '/settings': typeof ProtectedSettingsRoute
   '/': typeof ProtectedIndexRoute
 }
@@ -228,7 +210,6 @@ export interface FileRoutesById {
   '/_protected/about': typeof ProtectedAboutRoute
   '/_protected/create': typeof ProtectedCreateRoute
   '/_protected/current': typeof ProtectedCurrentRoute
-  '/_protected/notification': typeof ProtectedNotificationRoute
   '/_protected/settings': typeof ProtectedSettingsRoute
   '/_protected/': typeof ProtectedIndexRoute
 }
@@ -242,7 +223,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/create'
     | '/current'
-    | '/notification'
     | '/settings'
     | '/'
   fileRoutesByTo: FileRoutesByTo
@@ -253,7 +233,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/create'
     | '/current'
-    | '/notification'
     | '/settings'
     | '/'
   id:
@@ -265,7 +244,6 @@ export interface FileRouteTypes {
     | '/_protected/about'
     | '/_protected/create'
     | '/_protected/current'
-    | '/_protected/notification'
     | '/_protected/settings'
     | '/_protected/'
   fileRoutesById: FileRoutesById
@@ -308,7 +286,6 @@ export const routeTree = rootRoute
         "/_protected/about",
         "/_protected/create",
         "/_protected/current",
-        "/_protected/notification",
         "/_protected/settings",
         "/_protected/"
       ]
@@ -331,10 +308,6 @@ export const routeTree = rootRoute
     },
     "/_protected/current": {
       "filePath": "_protected/current.tsx",
-      "parent": "/_protected"
-    },
-    "/_protected/notification": {
-      "filePath": "_protected/notification.tsx",
       "parent": "/_protected"
     },
     "/_protected/settings": {

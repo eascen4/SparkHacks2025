@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-popover": "^1.1.6",
     "@radix-ui/react-separator": "^1.1.2",
@@ -18,6 +19,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@tanstack/react-query": "^5.66.0",
     "@tanstack/react-router": "^1.99.13",
+    "@tanstack/react-table": "^8.20.6",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
