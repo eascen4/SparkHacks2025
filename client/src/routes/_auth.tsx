@@ -14,9 +14,5 @@ export const Route = createFileRoute('/_auth')({
 })
 
 function RouteComponent() {
-  return  <>
-    <Card style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh', width: '100vw'}}>
-      <CardContent className="flex items-center space-x-4 rounded-2xl border p-[45px] shadow-lg"><LoginForm></LoginForm></CardContent>
-    </Card>
-  </>
+  return  <Outlet></Outlet>
 }
