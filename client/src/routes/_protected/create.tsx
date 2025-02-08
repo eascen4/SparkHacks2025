@@ -1,4 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import axios from "axios";
 import { useState } from "react";
 
 export const Route = createFileRoute("/_protected/create")({
@@ -6,16 +9,51 @@ export const Route = createFileRoute("/_protected/create")({
 });
 
 function RouteComponent() {
+  const navigate = useNavigate({ from: "/create" });
+
   const [wantedSubject, setWantedSubject] = useState("");
   const [wantedCourseNumber, setWantedCourseNumber] = useState("");
 
   const [giveUpSubject, setGiveUpSubject] = useState("");
   const [giveUpCourseNumber, setGiveUpCourseNumber] = useState("");
+  const mutation = useMutation({
+    mutationFn: async (data: {
+      courseId: number;
+      futureId: number;
+      reason: string;
+    }) => {
+      const response = await axios.post("/api/trade", data);
+      return response.data;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Created Trade",
+        description: "created trade successfully",
+      });
+      navigate({ to: "/current" });
+    },
+    onError: (error: unknown) => {
+      let errorMessage = "An unexpected error occurred";
+
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || error.message;
+      }
+
+      toast({
+        title: "Login Failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Wanted Class:", wantedSubject, wantedCourseNumber);
-    console.log("Willing to Give Up:", giveUpSubject, giveUpCourseNumber);
+    mutation.mutate({
+      courseId: 14,
+      futureId: 15,
+      reason: "I need this class",
+    });
   };
 
   return (
@@ -63,7 +101,10 @@ function RouteComponent() {
             />
           </div>
 
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+          <button
+            onClick={(e) => handleSubmit(e)}
+            className="bg-blue-500 text-white p-2 rounded"
+          >
             Submit Trade
           </button>
         </form>

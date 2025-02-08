@@ -22,6 +22,20 @@
       "when": 1739047274533,
       "tag": "0002_dark_vanisher",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1739055001428,
+      "tag": "0003_white_wrecking_crew",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1739056276150,
+      "tag": "0004_burly_switch",
+      "breakpoints": true
     }
   ]
 }

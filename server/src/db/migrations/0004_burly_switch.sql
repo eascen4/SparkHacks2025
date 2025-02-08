@@ -1,0 +1,2 @@
+ALTER TABLE "trades" ADD COLUMN "future_id" integer NOT NULL;--> statement-breakpoint
+ALTER TABLE "trades" ADD CONSTRAINT "trades_future_id_courses_id_fk" FOREIGN KEY ("future_id") REFERENCES "public"."courses"("id") ON DELETE no action ON UPDATE no action;
