@@ -113,7 +113,7 @@ function RouteComponent() {
                 <TableHead className="w-1/4">Requested Course</TableHead>
                 <TableHead className="w-1/4">Required Section & Time</TableHead>
                 <TableHead className="w-1/4">Send Email</TableHead>
-                <TableHead className="w-1/4">Delete</TableHead>
+                <TableHead className="w-1/4">Ignore</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -137,7 +137,7 @@ function RouteComponent() {
                     </TableCell>
                     <TableCell>
                       <Button onClick={() => handleDelete(notification.id)} >
-                        Delete
+                        Ignore
                       </Button>
                     </TableCell>
                   </TableRow>
