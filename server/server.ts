@@ -5,6 +5,7 @@ import { config } from "dotenv";
 import { authRouter } from "./src/routes/auth";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./src/middleware/errorHandler";
+import { userRouter } from "./src/routes/user";
 
 config({ path: ".env" });
 
@@ -23,7 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/auth", authRouter);
-
+app.use("/api/user", userRouter);
 app.use("/api/course", courseRouter);
 
 //@ts-ignore
