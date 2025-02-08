@@ -15,6 +15,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { motion } from "framer-motion";
+import oceanFloor from './../../assets/ocean-floor.png';
 
 function questions() {
   return (
@@ -110,6 +111,12 @@ function Index() {
         <br />
       </div>
       {questions()}
+
+      <img 
+          src={oceanFloor}
+          style={{ width: '1600px', height: '1000px', padding: '16px'}}
+      />
+      
 
     </div>
   );
