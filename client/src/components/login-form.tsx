@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Link, useNavigate } from "@tanstack/react-router"
 
 export function LoginForm({
   className,
@@ -23,24 +24,17 @@ export function LoginForm({
         <div className="grid gap-2">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
+            <Link to="/current" className="ml-auto text-sm underline-offset-4 hover:underline">
               Forgot your password?
-            </a>
+            </Link>
           </div>
           <Input id="password" type="password" required />
         </div>
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
+        <Link to="/current"><Button type="submit" className="w-full">Login</Button></Link>
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
-        <a href="#" className="underline underline-offset-4">
-          Sign up
-        </a>
+        <Link to="/signup">Sign Up</Link>
       </div>
     </form>
   )

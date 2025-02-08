@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Link } from "@tanstack/react-router"
 
 export function SignUpForm({
   className,
@@ -32,9 +33,11 @@ export function SignUpForm({
           </div>
           <Input id="password" type="password" required />
         </div>
-        <Button type="submit" className="w-full">
-          Sign Up
-        </Button>
+        <Link to="/current"><Button type="submit" className="w-full">Sign Up</Button></Link>
+      </div>
+      <div className="text-center text-sm">
+        Already have an account?{" "}
+        <Link to="/login">Log In</Link>
       </div>
     </form>
   )

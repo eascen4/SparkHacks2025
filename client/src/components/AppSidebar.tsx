@@ -10,13 +10,21 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import { GearIcon } from "@radix-ui/react-icons"; 
+import { motion } from "framer-motion"
+import compassRose from '../assets/compass-rose.png';
 
 const AppSidebar = () => {
   return (
     <Sidebar className="flex flex-col h-full">
       <SidebarContent className="flex-1">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-2xl font-bold">TradeSpark</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-2xl font-bold">
+            <motion.img
+              src={compassRose}
+              alt="Logo"
+              style={{ width: '48px', height: '48px', padding: '4px'}}
+            /> TradeSpark
+            </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
