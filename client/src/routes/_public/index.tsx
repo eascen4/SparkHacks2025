@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import compassRose from './../../assets/compass-rose.png';
 
 function questions() {
   return (
@@ -67,8 +68,14 @@ export const Route = createFileRoute('/_public/')({
 function Index() {
   return (
     <div className="p-2">
+      <img 
+        src={compassRose} 
+        style={{ width: '80px', height: '80px' }} 
+      />
       <h1>Welcome to TradeSpark!</h1>
       {questions()}
     </div>
-  )
+  );
 }
+
+
