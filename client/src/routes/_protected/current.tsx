@@ -1,33 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export const Route = createFileRoute("/_protected/current")({
   component: RouteComponent,
 });
 
-
-
 export const ToastDemo = () => {
-  const { toast } = useToast()
- 
+  const { toast } = useToast();
+
   return (
     <Button
       onClick={() => {
         toast({
           title: "Email sent!",
-          //description: "Friday, February 10, 2023 at 5:57 PM",
-        })
+        });
       }}
     >
       Email
     </Button>
-  )
-}
+  );
+};
 
 function RouteComponent() {
-  const notifications = [
+  const [notifications, setNotifications] = useState([
     {
       id: 1,
       offeredCourse: "CS 251",
@@ -94,10 +92,12 @@ function RouteComponent() {
       requiredDays: "M, W, F",
       requiredTime: "10:00-11:15",
     },
-  ];
+  ]);
 
-  const handleEmail = (id: number) => {
-    console.log("Email sent!");
+  const handleDelete = (id: number) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification.id !== id)
+    );
   };
 
   return (
@@ -113,6 +113,7 @@ function RouteComponent() {
                 <TableHead className="w-1/4">Requested Course</TableHead>
                 <TableHead className="w-1/4">Required Section & Time</TableHead>
                 <TableHead className="w-1/4">Send Email</TableHead>
+                <TableHead className="w-1/4">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -125,7 +126,7 @@ function RouteComponent() {
                       {notification.offeredDays} <br />
                       {notification.offeredTime}
                     </TableCell>
-                    <TableCell  className="font-medium">{notification.requiredCourse}</TableCell>
+                    <TableCell className="font-medium">{notification.requiredCourse}</TableCell>
                     <TableCell>
                       {notification.requiredSection} <br />
                       {notification.requiredDays} <br />
@@ -134,11 +135,16 @@ function RouteComponent() {
                     <TableCell>
                       <ToastDemo />
                     </TableCell>
+                    <TableCell>
+                      <Button onClick={() => handleDelete(notification.id)} >
+                        Delete
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-10 text-xl">
+                  <TableCell colSpan={6} className="text-center py-10 text-xl">
                     No trade notifications.
                   </TableCell>
                 </TableRow>
@@ -150,3 +156,4 @@ function RouteComponent() {
     </div>
   );
 }
+
