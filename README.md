@@ -79,6 +79,8 @@
 
 The current process for finding students to exchange courses with is difficult. There isn't a dedicated process to finding other people to trade classes with, so we wanted to create something to solve that issue.
 
+This project was created as a group submission for the SparkHacks 2025 hackathon @ University of Illinois at Chicago. The project is not fully deployed at this current time.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
@@ -96,40 +98,53 @@ The current process for finding students to exchange courses with is difficult. 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+You will need to install Node.js (20.18.2 LTS).
+
+* Node.js
   ```sh
-  npm install npm@latest -g
+  # Download and install nvm:
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+  # Download and install Node.js:
+  nvm install 20
+
+  # Verify the Node.js version:
+  node -v # Should print "v20.18.2".
+  nvm current # Should print "v20.18.2".
+  
+  # Verify npm version:
+  npm -v # Should print "10.8.2".
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/eascen4/TradeSpark.git
    ```
-3. Install NPM packages
+2. `cd` into `client`
    ```sh
-   npm install
+   cd client
    ```
-4. Enter your API in `config.js`
+3. Install packages by running the following command
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   npm i
    ```
-5. Change git remote url to avoid accidental pushes to base project
+4. Repeat with `server`
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+   cd ../server
+   npm i
    ```
-
+5. Run the file in client
+   ```sh
+   cd ../client
+   npm run dev
+   ```
+   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
