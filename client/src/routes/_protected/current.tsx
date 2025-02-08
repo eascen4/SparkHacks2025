@@ -113,7 +113,7 @@ function RouteComponent() {
                 <TableHead className="w-1/4">Requested Course</TableHead>
                 <TableHead className="w-1/4">Required Section & Time</TableHead>
                 <TableHead className="w-1/4">Send Email</TableHead>
-                <TableHead className="w-1/4">Actions</TableHead>
+                <TableHead className="w-1/4">Delete</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
