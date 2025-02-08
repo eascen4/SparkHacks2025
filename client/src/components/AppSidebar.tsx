@@ -23,7 +23,7 @@ const AppSidebar = () => {
               src={compassRose}
               alt="Logo"
               style={{ width: '50px', height: '50px', padding: '4px' }}
-            /> TradeSpark
+            /> <Link to="/">TradeSpark</Link>
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
