@@ -15,13 +15,14 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { motion } from "framer-motion";
+import oceanFloor from './../../assets/ocean-floor.png';
 
 function questions() {
   return (
     <div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>What is TradeSpark?</AccordionTrigger>
+          <AccordionTrigger><h2 className="font-bold text-xl">What is TradeSpark?</h2></AccordionTrigger>
           <AccordionContent>
             TradeSpark is a user-oriented platform designed to faciliate
             students in the process of obtaining the courses that they
@@ -31,7 +32,7 @@ function questions() {
       </Accordion>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>How does TradeSpark work?</AccordionTrigger>
+          <AccordionTrigger><h2 className="font-bold text-xl">How does TradeSpark work?</h2></AccordionTrigger>
           <AccordionContent>
             TradeSpark has several trades published by students that consist of
             2 individual parts: an offer and a bid. The offer is the class
@@ -43,7 +44,7 @@ function questions() {
       </Accordion>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>What does this solve?</AccordionTrigger>
+          <AccordionTrigger><h2 className="font-bold text-xl">What does this solve?</h2></AccordionTrigger>
           <AccordionContent>
             One of the most difficult parts of the semester isn't even within
             the coursework of your schedule, it's just the act of signing up for
@@ -59,7 +60,7 @@ function questions() {
       </Accordion>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>How can I start?</AccordionTrigger>
+          <AccordionTrigger><h2 className="font-bold text-xl">How can I start?</h2></AccordionTrigger>
           <AccordionContent>
             In order to being trading, simply <Link className="text-blue-500" to='/signup'>sign up</Link> or <Link className="text-blue-500" to="/login">login</Link> if you already
             have an account!
@@ -97,17 +98,25 @@ function Index() {
         style={{ width: '80px', height: '80px' }}
       /> */}
 
-      <div className="flex flex-row">
+      <div className="flex flex-row" style={{display: 'flex',  justifyContent:'left', alignItems:'center', height: '10vh'}}>
+      <br />
         <motion.img 
           src={compassRose}
           alt="animated image"
-          style={{ width: '80px', height: '80px' }}
+          style={{ width: '100px', height: '100px', padding: '16px'}}
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 3 }}
         />
         <h1 className="font-mono font-bold text-2xl position: 'absolute' ">Welcome to TradeSpark!</h1>
+        <br />
       </div>
       {questions()}
+
+      <img 
+          src={oceanFloor}
+          style={{ width: '1600px', height: '1000px', padding: '16px'}}
+      />
+      
 
     </div>
   );
