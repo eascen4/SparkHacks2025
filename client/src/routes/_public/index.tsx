@@ -108,11 +108,6 @@ function Index() {
         <h1 className="font-mono font-bold text-2xl position: 'absolute' ">Welcome to TradeSpark!</h1>
       </div>
       {questions()}
-      <img className="flex justify-center"
-          src={compassRose}
-          alt="animated image"
-          style={{ width: '2000px', height: '500px' }}
-      />
 
     </div>
   );
