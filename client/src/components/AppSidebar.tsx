@@ -18,23 +18,23 @@ const AppSidebar = () => {
     <Sidebar className="flex flex-col h-full">
       <SidebarContent className="flex-1">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-2xl font-bold">
+          <SidebarGroupLabel className="text-3xl font-bold">
             <motion.img
               src={compassRose}
               alt="Logo"
-              style={{ width: '48px', height: '48px', padding: '4px'}}
+              style={{ width: '50px', height: '50px', padding: '4px'}}
             /> TradeSpark
             </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/create">Create Trade</Link>
+                  <Link to="/create" className="text-xl">Create Trade</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/current">Current Trades</Link>
+                  <Link to="/current" className="text-xl">Current Trades</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -42,10 +42,10 @@ const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-\      <div className="p-4 border-t">
+      <div className="p-4 border-t">
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <Link to="/settings" className="flex items-center gap-2">
+            <Link to="/settings" className="flex items-center gap-2 text-xl">
               <GearIcon className="w-5 h-5" />
               Settings
             </Link>
@@ -57,5 +57,6 @@ const AppSidebar = () => {
 };
 
 export default AppSidebar;
+
 
 
