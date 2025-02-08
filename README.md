@@ -104,7 +104,6 @@ To get a local copy up and running follow these simple steps.
 
 You will need to install Node.js (20.18.2 LTS).
 
-* Node.js
   ```sh
   # Download and install nvm:
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
