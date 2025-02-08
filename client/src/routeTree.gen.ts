@@ -14,6 +14,10 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as ProtectedImport } from './routes/_protected'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as ProtectedIndexImport } from './routes/_protected/index'
+import { Route as ProtectedSettingsImport } from './routes/_protected/settings'
+import { Route as ProtectedNotificationImport } from './routes/_protected/notification'
+import { Route as ProtectedCurrentImport } from './routes/_protected/current'
+import { Route as ProtectedCreateImport } from './routes/_protected/create'
 import { Route as ProtectedAboutImport } from './routes/_protected/about'
 import { Route as AuthSignupImport } from './routes/_auth/signup'
 import { Route as AuthLoginImport } from './routes/_auth/login'
@@ -33,6 +37,30 @@ const AuthRoute = AuthImport.update({
 const ProtectedIndexRoute = ProtectedIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedSettingsRoute = ProtectedSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedNotificationRoute = ProtectedNotificationImport.update({
+  id: '/notification',
+  path: '/notification',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedCurrentRoute = ProtectedCurrentImport.update({
+  id: '/current',
+  path: '/current',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedCreateRoute = ProtectedCreateImport.update({
+  id: '/create',
+  path: '/create',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -93,6 +121,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedAboutImport
       parentRoute: typeof ProtectedImport
     }
+    '/_protected/create': {
+      id: '/_protected/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof ProtectedCreateImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/current': {
+      id: '/_protected/current'
+      path: '/current'
+      fullPath: '/current'
+      preLoaderRoute: typeof ProtectedCurrentImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/notification': {
+      id: '/_protected/notification'
+      path: '/notification'
+      fullPath: '/notification'
+      preLoaderRoute: typeof ProtectedNotificationImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsImport
+      parentRoute: typeof ProtectedImport
+    }
     '/_protected/': {
       id: '/_protected/'
       path: '/'
@@ -119,11 +175,19 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface ProtectedRouteChildren {
   ProtectedAboutRoute: typeof ProtectedAboutRoute
+  ProtectedCreateRoute: typeof ProtectedCreateRoute
+  ProtectedCurrentRoute: typeof ProtectedCurrentRoute
+  ProtectedNotificationRoute: typeof ProtectedNotificationRoute
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedAboutRoute: ProtectedAboutRoute,
+  ProtectedCreateRoute: ProtectedCreateRoute,
+  ProtectedCurrentRoute: ProtectedCurrentRoute,
+  ProtectedNotificationRoute: ProtectedNotificationRoute,
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
 }
 
@@ -136,6 +200,10 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
   '/about': typeof ProtectedAboutRoute
+  '/create': typeof ProtectedCreateRoute
+  '/current': typeof ProtectedCurrentRoute
+  '/notification': typeof ProtectedNotificationRoute
+  '/settings': typeof ProtectedSettingsRoute
   '/': typeof ProtectedIndexRoute
 }
 
@@ -144,6 +212,10 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
   '/about': typeof ProtectedAboutRoute
+  '/create': typeof ProtectedCreateRoute
+  '/current': typeof ProtectedCurrentRoute
+  '/notification': typeof ProtectedNotificationRoute
+  '/settings': typeof ProtectedSettingsRoute
   '/': typeof ProtectedIndexRoute
 }
 
@@ -154,14 +226,36 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/signup': typeof AuthSignupRoute
   '/_protected/about': typeof ProtectedAboutRoute
+  '/_protected/create': typeof ProtectedCreateRoute
+  '/_protected/current': typeof ProtectedCurrentRoute
+  '/_protected/notification': typeof ProtectedNotificationRoute
+  '/_protected/settings': typeof ProtectedSettingsRoute
   '/_protected/': typeof ProtectedIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/signup' | '/about' | '/'
+  fullPaths:
+    | ''
+    | '/login'
+    | '/signup'
+    | '/about'
+    | '/create'
+    | '/current'
+    | '/notification'
+    | '/settings'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/login' | '/signup' | '/about' | '/'
+  to:
+    | ''
+    | '/login'
+    | '/signup'
+    | '/about'
+    | '/create'
+    | '/current'
+    | '/notification'
+    | '/settings'
+    | '/'
   id:
     | '__root__'
     | '/_auth'
@@ -169,6 +263,10 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/signup'
     | '/_protected/about'
+    | '/_protected/create'
+    | '/_protected/current'
+    | '/_protected/notification'
+    | '/_protected/settings'
     | '/_protected/'
   fileRoutesById: FileRoutesById
 }
@@ -208,6 +306,10 @@ export const routeTree = rootRoute
       "filePath": "_protected.tsx",
       "children": [
         "/_protected/about",
+        "/_protected/create",
+        "/_protected/current",
+        "/_protected/notification",
+        "/_protected/settings",
         "/_protected/"
       ]
     },
@@ -221,6 +323,22 @@ export const routeTree = rootRoute
     },
     "/_protected/about": {
       "filePath": "_protected/about.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/create": {
+      "filePath": "_protected/create.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/current": {
+      "filePath": "_protected/current.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/notification": {
+      "filePath": "_protected/notification.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/settings": {
+      "filePath": "_protected/settings.tsx",
       "parent": "/_protected"
     },
     "/_protected/": {
