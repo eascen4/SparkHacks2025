@@ -136,8 +136,8 @@ function RouteComponent() {
                       <ToastDemo />
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => handleDelete(notification.id)} >
-                        Ignore
+                      <Button variant="destructive" onClick={() => handleDelete(notification.id)} >
+                        X
                       </Button>
                     </TableCell>
                   </TableRow>
